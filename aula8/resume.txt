@@ -1,0 +1,1 @@
+exercise with const and let using different approaches to display the information.

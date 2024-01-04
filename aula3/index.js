@@ -1,4 +1,8 @@
 
-// `` -> estas aspas são utilizadas para template strings
+/*
+    In JavaScript, numbers are designated as a data type called "number." 
+    Unlike some other programming languages, there isn't a distinction between different types of numbers in the way they are written.
+*/
 
-console.log(2, 15.9); // em js os numeros sao designados do tipo number, não existe a separação de valores como nas outras linguagens, neste caso, o 2 seria designado como tipo inteiro(INT) e o '15.9' como tipo float
+//For instance:
+console.log(2, 15.9); // In JavaScript, numbers are of the 'number' type. The '2' would be an integer (INT), and '15.9' would be a floating-point number (float).
