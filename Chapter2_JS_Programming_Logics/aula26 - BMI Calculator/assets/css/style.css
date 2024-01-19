@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+:root {
+  --primary-color: #f95959;
+  --shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+* {
+  box-sizing: border-box;
+  outline: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-color);
+  font-family: 'Open sans', sans-serif;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.page-wrapper {
+  margin-top: 3%;
+}
+
+.container {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 17px;
+  box-shadow: var(--shadow);
+  max-width: 30%;
+  margin: auto;
+}
+
+.box {
+  display: flex;
+}
+.split-left {
+  padding-right: 20px; 
+}
+
+.split-right {
+  padding-left: 40%; 
+}
+
+form {
+  display: inline-grid;
+  width: 100%;
+  padding: 0px 10px 10px 0px;
+}
+
+label {
+  text-align: start;
+}
+
+button {
+  margin-top: 30px;
+  background-color: #e3e3e3;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+button:hover {
+  background-color: aquamarine;
+  outline-color: #f95959;
+}
+
+input:focus {
+  outline-color: 120px solid red;
+  border-radius: 0.5rem;
+}
+
+.good{
+  background: lightgreen;
+  padding: 10px;
+}
+
+.bad{
+  background: #f95959;
+  padding: 10px;
+}
