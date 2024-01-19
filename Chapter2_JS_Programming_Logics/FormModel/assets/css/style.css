@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
 
 :root {
-  --primary-color: antiquewhite;
+  --primary-color: #f95959;
+  --shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 * {
@@ -21,11 +22,15 @@ body {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-
+  border-radius: 0.5rem;
+  padding: 10px;
+  box-shadow: var(--shadow);
 }
 
 .content-section h1 {
   text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
 form {
@@ -34,14 +39,23 @@ form {
   padding: 0px 10px 10px 10px;
 }
 
-form label {
+label {
   text-align: start;
 }
 
-form button {
-  margin-top: 7px;
+button {
+  margin-top: 30px;
+  background-color: #e3e3e3;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
 }
 
-form input:focus {
-  outline-color: 120px solid aquamarine;
+button:hover {
+  background-color: aquamarine;
+}
+
+input:focus {
+  outline-color: 120px solid red;
+  border-radius: 0.5rem;
 }
