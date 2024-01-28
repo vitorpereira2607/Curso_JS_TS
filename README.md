@@ -8,7 +8,8 @@ The files are organized by chapters from the course I'm following. Each chapter 
 
 ## Progress and Activities
 - [x] Completed: Chapter 1: Basic JavaScript
-- [ ] In progress: Chapter 2: JavaScript Programming Logics
+- [x] Completed: Chapter 2: JavaScript Programming Logics
+- [ ] In progress: Chapter 3: JavaScript Functions (Advanced)
 
 ## Future Expectations
 I plan to apply what I've learned in this course both in personal projects and in the job market. Apart from solidifying my knowledge in JavaScript, I'm interested in exploring the following frameworks:
