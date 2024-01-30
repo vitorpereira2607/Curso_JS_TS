@@ -1,3 +1,4 @@
+// Factory Functions -> used to return objects
 function createCalculator() {
     return {
 
@@ -11,7 +12,7 @@ function createCalculator() {
         },
 
         pressEnter() {
-            this.display.addEventListener('keyup', e => {
+            document.addEventListener('keyup', e => {
                 if (e.keyCode === 13) {
                     this.showResult();
                 }
@@ -41,10 +42,10 @@ function createCalculator() {
         showResultHistory() {
             
             if(this.lastResult){
-                console.log(this.lastResult);
+                //console.log(this.lastResult);
                 const {expression, res} = this.lastResult;
                 const p = document.createElement('p');
-                console.log(`${expression} = ${res}`);
+                //console.log(`${expression} = ${res}`);
                 p.innerText += `${expression} = ${res}`;
                 this.history.appendChild(p);
             }
