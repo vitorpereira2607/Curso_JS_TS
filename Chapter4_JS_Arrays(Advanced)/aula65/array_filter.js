@@ -36,3 +36,7 @@ console.log(personsWithMoreThan50years);
 console.log(personsEndWithLetterA);
 console.log(personsEndWithLetterA2);
 
+for(let value of personsWithMoreThanSixChar){
+    console.log(value.name)
+}
+
