@@ -42,7 +42,7 @@ const person1 = new Student('Vitor', '2002-07-26', 'Vereda dos Vigários', 93132
 // console.log(person1);
 // console.log(person1.introduction());
 
-const teacher = new Teacher('Mr. Smith', '1985-05-15', '123 Main St', '555-1234', [
+const teacher = new Teacher('Adelaide', '1985-05-15', '123 Main St', '555-1234', [
     new Student('José', '2000-07-26', 'Morada', 932132, ['English', 'Programming Language'])
 ]);
 console.log(teacher)
