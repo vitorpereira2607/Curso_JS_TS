@@ -19,13 +19,13 @@ for (const person of persons) {
 }
 /*
 Map(3) {
-  3 => { id: 3, name: 'Vitor' },
+  3 => { id: 3, name: 'Vitor' }, 
   2 => { id: 2, name: 'Tiago' },
   1 => { id: 1, name: 'José' }
 }
 */
 
-console.log(newPersons.get(2));
+//console.log(newPersons.get(2)); // { id: 2, name: 'Tiago' }
 
 for (const person of newPersons.values()){
     console.log(person)
