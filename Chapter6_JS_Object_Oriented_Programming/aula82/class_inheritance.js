@@ -31,7 +31,7 @@ class Smartphone extends EletronicDevice {
     }
 
     startDevice(){
-        console.log('Changing startDevice method'); // Polyphormism
+        console.log('Changing startDevice method'); 
     }
 
     addMethod(){
@@ -51,5 +51,6 @@ Smartphone {
     color: 'Black'
   }
   */ 
-s1.startDevice();
-s1.turnOff(); // Ability to access the methods from the main class
+ 
+s1.startDevice();// Ability to access the methods from the main class
+s1.turnOff(); 
