@@ -11,3 +11,34 @@ const request = obj => {
         }
     });
 }
+
+document.addEventListener('click', e => {
+    const el = e.target;
+    const tag = el.tagName.toLowerCase();
+
+    if(tag === 'a'){
+        e.preventDefault();
+        loadPage(el);
+    }
+});
+
+function loadPage(el) {
+    const href = el.getAttribute('href');
+
+    request({
+        method: 'GET',
+        url: href,
+        success(response){
+            loadResult(response)
+        },
+        error(errorText){
+            console.log(errorText)
+        }
+    })
+}
+
+function loadResult(response) {
+    const result = document.querySelector('.result');
+
+    result.innerHTML = response;
+}
