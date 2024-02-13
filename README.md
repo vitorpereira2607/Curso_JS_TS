@@ -9,7 +9,12 @@ The files are organized by chapters from the course I'm following. Each chapter 
 ## Progress and Activities
 - [x] Completed: Chapter 1: Basic JavaScript
 - [x] Completed: Chapter 2: JavaScript Programming Logics
-- [ ] In progress: Chapter 3: JavaScript Functions (Advanced)
+- [x] Completed: Chapter 3: JavaScript Functions (Advanced)
+- [x] Completed: Chapter 4: JavaScript Arrays (Advanced)
+- [x] Completed: Chapter 5: JavaScript Objects Prototypes (Advanced)
+- [x] Completed: Chapter 6: JavaScript OOP (Advanced)
+- [x] Completed: Chapter 7: JavaScript Asynchronous - Promises, Ajax, Fetch, Async/Await (Advanced)
+- [ ] In progress: Chapter 8: Javascript Tooling & ES6 Modules
 
 ## Future Expectations
 I plan to apply what I've learned in this course both in personal projects and in the job market. Apart from solidifying my knowledge in JavaScript, I'm interested in exploring the following frameworks:
