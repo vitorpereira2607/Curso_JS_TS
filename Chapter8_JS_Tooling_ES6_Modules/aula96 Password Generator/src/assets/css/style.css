@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+:root {
+  --primary-color: #f95959;
+  --shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+* {
+  box-sizing: border-box;
+  outline: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-color);
+}
+
+.container {
+  background: white;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  padding: 10px;
+  box-shadow: var(--shadow); 
+  width: 600px;
+}
+
+
+button {
+  margin-top: 30px;
+  cursor: pointer;
+
+  box-shadow: var(--shadow);
+}
+
+div{
+  font-size: 17px;
+}
+
+.result{
+  font-size: 2em;
+  padding-bottom: 10px;
+}
+
