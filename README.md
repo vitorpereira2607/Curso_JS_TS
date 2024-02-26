@@ -14,7 +14,8 @@ The files are organized by chapters from the course I'm following. Each chapter 
 - [x] Completed: Chapter 5: JavaScript Objects Prototypes (Advanced)
 - [x] Completed: Chapter 6: JavaScript OOP (Advanced)
 - [x] Completed: Chapter 7: JavaScript Asynchronous - Promises, Ajax, Fetch, Async/Await (Advanced)
-- [ ] In progress: Chapter 8: Javascript Tooling & ES6 Modules
+- [x] Completed: Chapter 8: Javascript Tooling & ES6 Modules
+- [ ] In Progress: Chapter 9: Node, Npm, Express, MongoDB
 
 ## Future Expectations
 I plan to apply what I've learned in this course both in personal projects and in the job market. Apart from solidifying my knowledge in JavaScript, I'm interested in exploring the following frameworks:
