@@ -11,7 +11,7 @@ const importFunctionFullName = require('./module1').getFullName;
 // Method 3: Destructuring assignment to import specific exports directly
 const { name, surname, getFullName } = require('./module1');
 
-console.log(name, surname);
+console.log(name, surname, getFullName);
 
 importFunctionFullName();
 

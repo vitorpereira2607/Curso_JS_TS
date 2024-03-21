@@ -1,4 +1,4 @@
-// It works similary like dafault from ES6 Modules
+// It works similary like default from ES6 Modules
 module.exports = class Animal{
     constructor(specie, name, age, color, sound){
         this.specie = specie;
