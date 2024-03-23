@@ -1,0 +1,15 @@
+<%- include('includes/head'); %>
+  <section class="container">
+    <form action="/" method="POST" class="form">
+      <label for="input-name">Names</label>
+      <input type="text" name="_csrf" value="<%- csrfToken %>">
+      <label for="input-surname">Surname</label>
+      <input type="text" name="surname">
+      <label for="input-age">Age</label>
+      <input type="text" name="age">
+
+      <button>Send</button>
+    </form>
+  </section>
+
+  <%- include('includes/footer')%>

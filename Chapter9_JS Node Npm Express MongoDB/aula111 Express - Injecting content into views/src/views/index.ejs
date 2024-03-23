@@ -1,0 +1,39 @@
+<%- include('includes/head'); %>
+  <section class="container">
+    <div class="container-section">
+      <h1>
+        <% if(typeof title !=='undefined' ) { %>
+          <%= title %>
+            <% } else { %>
+              Title was not sended.
+              <% } %>
+      </h1>
+      <h1>
+        <%= localVariable %>
+      </h1>
+      <p>
+        <% numbers.forEach(number=> { %>
+          <%= number %>
+            <%});%>
+      </p>
+      <p>
+        <% for(let person of persons){%>
+          <%= person.name %>
+            <%= person.surname%><br>
+              <%}%>
+      </p>
+    </div>
+
+    <!-- <form action="/" method="POST" class="form">
+      <label for="input-name">Names</label>
+      <input type="text" name="name">
+      <label for="input-surname">Surname</label>
+      <input type="text" name="surname">
+      <label for="input-age">Age</label>
+      <input type="text" name="age">
+
+      <button>Send</button>
+    </form>
+  </section> -->
+
+  <%- include('includes/footer')%>
