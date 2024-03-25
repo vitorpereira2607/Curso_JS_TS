@@ -2,7 +2,7 @@
   <section class="container">
     <form action="/" method="POST" class="form">
       <label for="input-name">Names</label>
-      <input type="text" name="_csrf" value="<%- csrfToken %>">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
       <label for="input-surname">Surname</label>
       <input type="text" name="surname">
       <label for="input-age">Age</label>
