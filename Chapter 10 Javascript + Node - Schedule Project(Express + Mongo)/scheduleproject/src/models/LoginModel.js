@@ -5,6 +5,7 @@ const bcryptjs = require('bcryptjs');
 const LoginSchema = new mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
+    username: { type: String, required: true}
 
 });
 
@@ -17,6 +18,23 @@ class Login {
         this.user = null;
     }
 
+    async login(){
+        this.validate();
+        if (this.errors.length > 0) return;
+        this.user = await LoginModel.findOne({ email: this.body.email });
+
+        if (!this.user) {
+            this.errors.push('Esta conta não existe');
+        }
+
+        if(!bcryptjs.compareSync(this.body.password, this.user.password)){
+            this.errors.push('Password inválida.');
+            this.user = null;
+            return;
+        }
+
+    }
+
     async register() {
         this.validate();
         if (this.errors.length > 0) return;
@@ -26,27 +44,26 @@ class Login {
         const salt = bcryptjs.genSaltSync();
         this.body.password = bcryptjs.hashSync(this.body.password, salt);
 
-        try {
-            this.users = await LoginModel.create(this.body);
-        } catch (error) {
-            console.error(error);
-        }
-
+        this.users = await LoginModel.create(this.body);
     }
 
-    async userExists(){
-        const user = await LoginModel.findOne({email: this.body.email});
-
-        if(user) this.errors.push('Esta conta já existe.');
-  
+    async userExists() {
+        this.user = await LoginModel.findOne({ email: this.body.email });
+        if (this.user) this.errors.push('Esta conta já existe.');
     }
 
     validate() {
         this.cleanUp()
 
+        if(this.body.email === '' && this.body.password === '' && this.body.username === '') {
+            this.errors.push('Por favor, preencha os campos abaixo');
+            return;
+        }
+        
+        if (this.body.username < 5 || this.body.username > 15) this.errors.push('Utilizador deve conter entre 5 e 15 caractares.');
         if (!validator.isEmail(this.body.email)) this.errors.push('Email inválido!');
-        if (this.body.password.length < 3 || this.body.password.length > 50) this.errors.push('A password tem que conter pelo menos 3 a 50 caracteres.');
-
+        if (this.body.password.length < 3 || this.body.password.length > 50) this.errors.push('A password deve conter entre 3 a 50 caracteres.');
+        
     }
 
     cleanUp() {
@@ -58,7 +75,8 @@ class Login {
 
         this.body = {
             email: this.body.email,
-            password: this.body.password
+            password: this.body.password,
+            username: this.body.username
         }
     }
 
