@@ -4,6 +4,8 @@ const homeController = require('./src/controllers/homeController');
 const loginController = require('./src/controllers/loginController');
 const contactController = require('./src/controllers/contactController');
 
+const { loginRequired } = require('./src/middlewares/middleware');
+
 // Home routes
 route.get('/', homeController.index);
 
@@ -18,6 +20,9 @@ route.post('/login/login', loginController.login)
 
 // Contact routes
 
-route.get('/contact/index', contactController.contactIndex);
+route.get('/contact/index', loginRequired, contactController.contactIndex);
+route.get('/contact/create-contact', loginRequired, contactController.createContactIndex);
+route.post('/create-contact/create', loginRequired, contactController.createContact);
+route.delete('/create-contact/:id', loginRequired, contactController.deleteContact);
 
 module.exports = route;

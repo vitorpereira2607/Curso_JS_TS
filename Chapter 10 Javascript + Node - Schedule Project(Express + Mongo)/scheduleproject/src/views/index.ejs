@@ -10,20 +10,24 @@
           <p class="text-center lead">Contatos</p>
         </div>
         <div class="row">
-          
+
           <%- include('includes/messages'); %>
-        
-          <div class="responsive-table my-3">
-            <table class="table">
-              <tr>
-                <td>Name</td>
-                <td>Surname</td>
-                <td>Email</td>
-                <td>Number</td>
-              </tr>
-            </table>
-          </div>
+
+            <div class="responsive-table my-3">
+              <table class="table">
+                <tr>
+                  <td>Name</td>
+                  <td>Surname</td>
+                  <td>Email</td>
+                  <td>Number</td>
+                  <td><a href="/contact/:id">Editar</a></td>
+                  <td><a href="eliminar.html">Eliminar</a></td>
+
+                </tr>
+              </table>
+            </div>
         </div>
       </div>
     </div>
 
+    <%- include('includes/footer') %>
