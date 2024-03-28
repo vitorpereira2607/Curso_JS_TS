@@ -38,17 +38,17 @@ class Contact {
             if (typeof id !== 'string') return;
 
             this.validate();
-
+            
             if (this.errors.length > 0) return;
 
-            this.contact = await ContactModel.findById(id, this.body, { new: true })
+            this.contact = await ContactModel.findByIdAndUpdate(id, this.body, { new: true })
             return this.contact;
         } catch (error) {
             console.log('Error updating contact: ', error);
         }
     }
 
-    async getContacts() {
+    static async getContacts() {
         try {
             return ContactModel.find();
         } catch (error) {

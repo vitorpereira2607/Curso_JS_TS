@@ -37,7 +37,11 @@ exports.editContactIndex = async (req, res) => {
 
 exports.updateContact = async (req, res) => {
     try {
-        if (!req.params.id) return res.render('error');
+      
+        if (!req.params.id) {
+            console.log("ID parameter is undefined");
+            return res.render('error');
+        }
 
         const contact = new Contact(req.body);
 
@@ -50,7 +54,7 @@ exports.updateContact = async (req, res) => {
             })     
         }
 
-        req.flash('success', 'Contato criado com sucesso.');
+        req.flash('success', 'Contato editado com sucesso.');
         res.redirect(`/contact/edit-contact/${contact.contact._id}`);
         return;
     } catch (error) {
@@ -58,6 +62,7 @@ exports.updateContact = async (req, res) => {
         res.status(500).send('Internal server error')
     }
 }
+
 
 
 
