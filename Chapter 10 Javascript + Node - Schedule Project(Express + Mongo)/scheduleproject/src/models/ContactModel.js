@@ -5,7 +5,7 @@ const ContactSchema = new mongoose.Schema({
     name: { type: String, required: true },
     surname: { type: String, required: false, default: '' },
     email: { type: String, required: true },
-    phonenumber: { type: String, required: true},
+    phonenumber: { type: String, required: true },
     registered_on: { type: Date, default: Date.now }
 });
 
@@ -15,58 +15,97 @@ class Contact {
     constructor(body) {
         this.body = body;
         this.errors = [];
-        this.contato = [];
+        this.contact = [];
     }
 
     async create() {
-        this.validate();
-        if (this.errors.length > 0) return;
+        try {
+            this.validate();
+            await this.contactExists();
 
-        await this.contactExists();
+            if (this.errors.length > 0) return;
 
-        this.contato = ContactModel.create(this.body);
+
+            this.contact = await ContactModel.create(this.body);
+        } catch (error) {
+            console.log('Error creating contact: ', error)
+        }
+
     }
 
-    static async getContacts() {
+    async updateContactById(id) {
+        try {
+            if (typeof id !== 'string') return;
+
+            this.validate();
+
+            if (this.errors.length > 0) return;
+
+            this.contact = await ContactModel.findById(id, this.body, { new: true })
+            return this.contact;
+        } catch (error) {
+            console.log('Error updating contact: ', error);
+        }
+    }
+
+    async getContacts() {
         try {
             return ContactModel.find();
         } catch (error) {
-            console.log('Error fetching contacts', error);
+            console.log('Error fetching contacts: ', error);
         }
     }
 
-    async delete(){
+    async contactById(id) {
+        try {
+            if (typeof id !== 'string') return;
+
+            return await ContactModel.findById(id);
+
+        } catch (error) {
+            console.log('Error fetching contact: ', error);
+            throw error;
+        }
+    }
+
+    async delete() {
         try {
             const deletedContact = ContactModel.findByIdAndDelete(this.body.id)
-            if(!deletedContact) throw new Error('Contact not found');
+            if (!deletedContact) throw new Error('Contact not found');
 
             return deletedContact;
-            
+
         } catch (error) {
-            console.log('Error deleting contact:', error);
+            console.log('Error deleting contact: ', error);
         }
     }
 
-    async contactExists(){
-        const existingEmailContact = await ContactModel.findOne({ email: this.body.email})
-        
-        if(existingEmailContact) {
-            this.errors.push('Este email já existe');
-            return;
+    async contactExists() {
+
+        try {
+            const existingEmailContact = await ContactModel.findOne({ email: this.body.email })
+
+            if (existingEmailContact) {
+                this.errors.push('Este email já existe');
+                return;
+            }
+
+            const existingPhoneContact = await ContactModel.findOne({ phonenumber: this.body.phonenumber })
+
+            if (existingPhoneContact) {
+                this.errors.push('Este número de telemóvel já existe');
+                return;
+            }
+        } catch (error) {
+            console.log('Error fetching existence contacts', error);
         }
 
-        const existingPhoneContact = await ContactModel.findOne({ phonenumber: this.body.phonenumber})
-        
-        if(existingPhoneContact) {
-            this.errors.push('Este número de telemóvel já existe');
-            return;
-        }
     }
 
     validate() {
         this.cleanUp();
 
-        const { name, surname, email, phonenumber} = this.body;
+        const { name, surname, email, phonenumber } = this.body;
 
         if (!name && !surname && !email && !phonenumber) {
             this.errors.push('Por favor, preencha todos os campos para criar um contato.');
@@ -86,7 +125,6 @@ class Contact {
             }
         }
     }
-    
 }
 
 module.exports = Contact;

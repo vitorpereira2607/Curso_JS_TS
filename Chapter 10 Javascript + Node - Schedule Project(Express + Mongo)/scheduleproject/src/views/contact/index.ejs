@@ -31,7 +31,7 @@
               <td><%= contact.surname %></td>
               <td><%= contact.email %></td>
               <td><%= contact.phonenumber %></td>
-              <td><a href="/contact/<%= contact._id %>">Editar</a></td>
+              <td><a href="/contact/edit-contact/<%= contact._id %>">Editar</a></td>
               <td><a class="delete-row" data-contact-id="<%= contact._id %>">Eliminar</a></td>
             </tr>
           <% }); %>
@@ -42,9 +42,5 @@
     </div>
   </div>
 </div>
-
-<script>
-  document.getElementById('deleteRow')
-</script>
 
 <%- include('../includes/footer'); %>

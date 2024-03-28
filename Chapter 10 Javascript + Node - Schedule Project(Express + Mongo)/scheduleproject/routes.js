@@ -22,6 +22,8 @@ route.post('/login/login', loginController.login)
 
 route.get('/contact/index', loginRequired, contactController.contactIndex);
 route.get('/contact/create-contact', loginRequired, contactController.createContactIndex);
+route.get('/contact/edit-contact/:id', loginRequired, contactController.editContactIndex)
+route.put('/contact/edit-contact/:id', loginRequired, contactController.updateContact)
 route.post('/create-contact/create', loginRequired, contactController.createContact);
 route.delete('/create-contact/:id', loginRequired, contactController.deleteContact);
 
