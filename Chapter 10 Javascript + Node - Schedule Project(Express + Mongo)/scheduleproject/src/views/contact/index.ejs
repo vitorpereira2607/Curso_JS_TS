@@ -32,7 +32,7 @@
               <td><%= contact.email %></td>
               <td><%= contact.phonenumber %></td>
               <td><a href="/contact/edit-contact/<%= contact._id %>">Editar</a></td>
-              <td><a class="delete-row" data-contact-id="<%= contact._id %>">Eliminar</a></td>
+              <td><a class="text-danger" href="/contact/delete/<%= contact._id %>">Eliminar</a></td>
             </tr>
           <% }); %>
         </table>

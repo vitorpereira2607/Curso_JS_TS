@@ -28,7 +28,7 @@ class Contact {
 
             this.contact = await ContactModel.create(this.body);
         } catch (error) {
-            console.log('Error creating contact: ', error)
+            console.log('Error creating contact: ', error);
         }
 
     }
@@ -38,10 +38,10 @@ class Contact {
             if (typeof id !== 'string') return;
 
             this.validate();
-            
+
             if (this.errors.length > 0) return;
 
-            this.contact = await ContactModel.findByIdAndUpdate(id, this.body, { new: true })
+            this.contact = await ContactModel.findByIdAndUpdate(id, this.body, { new: true });
             return this.contact;
         } catch (error) {
             console.log('Error updating contact: ', error);
@@ -50,7 +50,8 @@ class Contact {
 
     static async getContacts() {
         try {
-            return ContactModel.find();
+            return ContactModel.find()
+                .sort({ registered_on: -1});
         } catch (error) {
             console.log('Error fetching contacts: ', error);
         }
@@ -68,29 +69,34 @@ class Contact {
         }
     }
 
-    async delete() {
+    async delete(id) {
         try {
-            const deletedContact = ContactModel.findByIdAndDelete(this.body.id)
+            if (!id) return; // Check if id is provided
+    
+            const deletedContact = await ContactModel.findByIdAndDelete(id);
             if (!deletedContact) throw new Error('Contact not found');
-
+    
             return deletedContact;
-
+    
         } catch (error) {
             console.log('Error deleting contact: ', error);
+            throw error;
         }
     }
+    
 
     async contactExists() {
 
         try {
-            const existingEmailContact = await ContactModel.findOne({ email: this.body.email })
+            const existingEmailContact = await ContactModel.findOne({ email: this.body.email });
 
             if (existingEmailContact) {
                 this.errors.push('Este email já existe');
                 return;
             }
 
-            const existingPhoneContact = await ContactModel.findOne({ phonenumber: this.body.phonenumber })
+            const existingPhoneContact = await ContactModel.findOne({ phonenumber: this.body.phonenumber });
+
 
             if (existingPhoneContact) {
                 this.errors.push('Este número de telemóvel já existe');
@@ -99,7 +105,6 @@ class Contact {
         } catch (error) {
             console.log('Error fetching existence contacts', error);
         }
-
     }
 
     validate() {

@@ -25,7 +25,8 @@ exports.editContactIndex = async (req, res) => {
 
         const contact = await contactInstance.contactById(req.params.id);
 
-        console.log(contact);
+        if(!contact) return res.render('error');
+        
 
         res.render('contact/edit-contact', { contact });
 
@@ -37,32 +38,33 @@ exports.editContactIndex = async (req, res) => {
 
 exports.updateContact = async (req, res) => {
     try {
-      
         if (!req.params.id) {
-            console.log("ID parameter is undefined");
             return res.render('error');
         }
 
-        const contact = new Contact(req.body);
+        const contactData = { _id: req.params.id, ...req.body }
+        const contact = new Contact(contactData);
 
         await contact.updateContactById(req.params.id);
+
+        if (!contact) return res.render('error');
 
         if (contact.errors.length > 0) {
             req.flash('errors', contact.errors);
             return req.session.save(() => {
-                res.redirect(`/contact/edit-contact/${contact.contact._id}`);
+                res.redirect(`/contact/edit-contact/${contact.body._id}`);
             })     
         }
 
         req.flash('success', 'Contato editado com sucesso.');
-        res.redirect(`/contact/edit-contact/${contact.contact._id}`);
-        return;
+        return req.session.save(() => {
+            res.redirect(`/contact/edit-contact/${contact.body._id}`);
+        })    
     } catch (error) {
         console.log(error);
-        res.status(500).send('Internal server error')
+        res.status(500).send('Internal server error');
     }
 }
-
 
 
 
@@ -89,12 +91,25 @@ exports.createContact = async (req, res) => {
     }
 }
 
+// Controller
 exports.deleteContact = async (req, res) => {
     try {
-        const contact = await Contact.delete()
+        const contactInstance = new Contact(req.body);
+
+        const contact = await contactInstance.delete(req.params.id);
+
+        if (!contact) return res.render('error');
+
+        req.flash('success', 'Contato eliminado com sucesso.');
+        req.session.save(() => {
+            return res.redirect('/contact/index');
+        });
 
     } catch (error) {
-        console.log(error)
-        res.render('error');
+        console.log(error);
+        req.flash('error', 'Erro ao eliminar contato.');
+        req.session.save(() => {
+            return res.redirect('/contact/index');
+        });
     }
-}
+};
