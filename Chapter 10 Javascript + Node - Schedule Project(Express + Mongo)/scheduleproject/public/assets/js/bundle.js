@@ -1,32 +1,38 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./frontend/modules/Login.js":
-/*!***********************************!*\
-  !*** ./frontend/modules/Login.js ***!
-  \***********************************/
+/***/ "./frontend/modules/Contact.js":
+/*!*************************************!*\
+  !*** ./frontend/modules/Contact.js ***!
+  \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Login)
+/* harmony export */   "default": () => (/* binding */ Contact)
 /* harmony export */ });
-/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! validator */ "./node_modules/validator/index.js");
-/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! validator */ "./node_modules/validator/index.js");
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _FormValidation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormValidation */ "./frontend/modules/FormValidation.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
-var Login = /*#__PURE__*/function () {
-  function Login(formClass) {
-    _classCallCheck(this, Login);
+
+var Contact = /*#__PURE__*/function () {
+  function Contact(formClass) {
+    _classCallCheck(this, Contact);
     this.form = document.querySelector(formClass);
+    this.events();
   }
-  return _createClass(Login, [{
+  return _createClass(Contact, [{
     key: "init",
     value: function init() {
       this.events();
@@ -39,14 +45,6 @@ var Login = /*#__PURE__*/function () {
       this.form.addEventListener('submit', function (e) {
         e.preventDefault();
         _this.handleSubmit(e);
-      });
-
-      // Clear error messages on input change
-      var inputs = this.form.querySelectorAll('input');
-      inputs.forEach(function (input) {
-        input.addEventListener('input', function () {
-          _this.clearError(input);
-        });
       });
     }
   }, {
@@ -62,37 +60,179 @@ var Login = /*#__PURE__*/function () {
     key: "validate",
     value: function validate(e) {
       var el = e.target;
+      var nameInput = el.querySelector('input[name="name"]');
+      var emailInput = el.querySelector('input[name="email"]');
+      var error = false;
+      var errorFields = this.form.querySelectorAll('.invalid-feedback');
+      var _iterator = _createForOfIteratorHelper(errorFields),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var errorField = _step.value;
+          errorField.remove();
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      var invalidInputs = this.form.querySelectorAll('.is-invalid');
+      var _iterator2 = _createForOfIteratorHelper(invalidInputs),
+        _step2;
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var invalidInput = _step2.value;
+          invalidInput.classList.remove('is-invalid');
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+      if (!nameInput.value) {
+        (0,_FormValidation__WEBPACK_IMPORTED_MODULE_0__.createError)(nameInput, 'Nome é um campo obrigatório.');
+        error = true;
+      }
+      if (emailInput.value) {
+        if (!validator__WEBPACK_IMPORTED_MODULE_1___default().isEmail(emailInput.value)) {
+          (0,_FormValidation__WEBPACK_IMPORTED_MODULE_0__.createError)(emailInput, 'Email Inválido');
+          error = true;
+        }
+      }
+      return !error;
+    }
+  }]);
+}();
+
+
+/***/ }),
+
+/***/ "./frontend/modules/FormValidation.js":
+/*!********************************************!*\
+  !*** ./frontend/modules/FormValidation.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createError: () => (/* binding */ createError)
+/* harmony export */ });
+function createError(field, msg) {
+  var div = document.createElement('div');
+  div.innerHTML = msg;
+  div.classList.add('invalid-feedback');
+  div.style.marginBottom = '10px';
+  field.classList.add('is-invalid');
+  field.parentNode.appendChild(div);
+}
+
+/***/ }),
+
+/***/ "./frontend/modules/Login.js":
+/*!***********************************!*\
+  !*** ./frontend/modules/Login.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Login)
+/* harmony export */ });
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! validator */ "./node_modules/validator/index.js");
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _FormValidation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormValidation */ "./frontend/modules/FormValidation.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+var Login = /*#__PURE__*/function () {
+  function Login(formClass) {
+    _classCallCheck(this, Login);
+    this.form = document.querySelector(formClass);
+    this.events();
+  }
+  return _createClass(Login, [{
+    key: "init",
+    value: function init() {
+      this.events();
+    }
+  }, {
+    key: "events",
+    value: function events() {
+      var _this = this;
+      if (!this.form) return;
+      this.form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        _this.handleSubmit(e);
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var checkFields = this.validate(e);
+      if (checkFields) {
+        this.form.submit();
+      }
+    }
+  }, {
+    key: "validate",
+    value: function validate(e) {
+      var el = e.target;
+      var userInput = el.querySelector('input[name="username"]');
       var emailInput = el.querySelector('input[name="email"]');
       var passwordInput = el.querySelector('input[name="password"]');
       var error = false;
-      console.log("Email input value:", emailInput.value);
-      console.log("Password input value:", passwordInput.value);
-      if (!validator__WEBPACK_IMPORTED_MODULE_0___default().isEmail(emailInput.value)) {
-        this.createError(emailInput, 'Email inválido!');
+      var errorFields = this.form.querySelectorAll('.invalid-feedback');
+      var _iterator = _createForOfIteratorHelper(errorFields),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var errorField = _step.value;
+          errorField.remove();
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      var invalidInputs = this.form.querySelectorAll('.is-invalid');
+      var _iterator2 = _createForOfIteratorHelper(invalidInputs),
+        _step2;
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var invalidInput = _step2.value;
+          invalidInput.classList.remove('is-invalid');
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+      if (userInput) {
+        if (userInput.value.length < 5 || userInput.value.length > 15) {
+          (0,_FormValidation__WEBPACK_IMPORTED_MODULE_0__.createError)(userInput, 'Utilizador deve conter entre 5 e 15 caracteres.');
+          error = true;
+        }
+      }
+      if (!validator__WEBPACK_IMPORTED_MODULE_1___default().isEmail(emailInput.value)) {
+        (0,_FormValidation__WEBPACK_IMPORTED_MODULE_0__.createError)(emailInput, 'Email inválido!');
         error = true;
       }
       if (passwordInput.value.length < 3 || passwordInput.value.length > 50) {
-        this.createError(passwordInput, 'A password deve conter entre 3 a 50 caracteres.');
+        (0,_FormValidation__WEBPACK_IMPORTED_MODULE_0__.createError)(passwordInput, 'A password deve conter entre 3 a 50 caracteres.');
         error = true;
       }
-      return error;
-    }
-  }, {
-    key: "createError",
-    value: function createError(field, msg) {
-      this.clearError(field);
-      var div = document.createElement('div');
-      div.innerHTML = msg;
-      div.classList.add('invalid-feedback');
-      field.insertAdjacentElement('afterend', div);
-    }
-  }, {
-    key: "clearError",
-    value: function clearError(field) {
-      var errorDiv = field.nextElementSibling;
-      if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
-        errorDiv.remove();
-      }
+      return !error;
     }
   }]);
 }();
@@ -30827,11 +30967,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _modules_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Login */ "./frontend/modules/Login.js");
+/* harmony import */ var _modules_Contact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/Contact */ "./frontend/modules/Contact.js");
+
 
 
 
 var login = new _modules_Login__WEBPACK_IMPORTED_MODULE_2__["default"]('.form-login');
+var register = new _modules_Login__WEBPACK_IMPORTED_MODULE_2__["default"]('.form-register');
+var contact = new _modules_Contact__WEBPACK_IMPORTED_MODULE_3__["default"]('.form-create-contact');
 login.init();
+register.init();
+contact.init();
 })();
 
 /******/ })()

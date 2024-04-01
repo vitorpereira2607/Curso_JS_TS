@@ -4,8 +4,8 @@ const validator = require('validator');
 const ContactSchema = new mongoose.Schema({
     name: { type: String, required: true },
     surname: { type: String, required: false, default: '' },
-    email: { type: String, required: true },
-    phonenumber: { type: String, required: true },
+    email: { type: String, required: false, default:'' },
+    phonenumber: { type: String, required: false, default:'' },
     registered_on: { type: Date, default: Date.now }
 });
 
@@ -71,7 +71,7 @@ class Contact {
 
     async delete(id) {
         try {
-            if (!id) return; // Check if id is provided
+            if (!id) return; 
     
             const deletedContact = await ContactModel.findByIdAndDelete(id);
             if (!deletedContact) throw new Error('Contact not found');
@@ -88,19 +88,22 @@ class Contact {
     async contactExists() {
 
         try {
-            const existingEmailContact = await ContactModel.findOne({ email: this.body.email });
 
-            if (existingEmailContact) {
-                this.errors.push('Este email já existe');
-                return;
+            if(this.body.email !== ""){
+                const existingEmailContact = await ContactModel.findOne({ email: this.body.email });
+            
+                if (existingEmailContact) {
+                    this.errors.push('Este email já existe');
+                    return;
+                }
             }
 
-            const existingPhoneContact = await ContactModel.findOne({ phonenumber: this.body.phonenumber });
-
-
-            if (existingPhoneContact) {
-                this.errors.push('Este número de telemóvel já existe');
-                return;
+            if(this.body.phonenumber !== ""){
+                const existingPhoneContact = await ContactModel.findOne({ phonenumber: this.body.phonenumber });
+                if (existingPhoneContact) {
+                    this.errors.push('Este número de telemóvel já existe');
+                    return;
+                }
             }
         } catch (error) {
             console.log('Error fetching existence contacts', error);
@@ -113,11 +116,19 @@ class Contact {
         const { name, surname, email, phonenumber } = this.body;
 
         if (!name && !surname && !email && !phonenumber) {
-            this.errors.push('Por favor, preencha todos os campos para criar um contato.');
+            this.errors.push('Por favor, preencha os campos necessários para criar um contato.');
             return;
         }
 
-        if (!validator.isEmail(email)) this.errors.push('Email inválido!');
+        if(!email && !phonenumber){
+            this.errors.push('Pelo menos um contato precisa ser enviado: e-mail ou telefone.');
+            return;
+        }
+
+        if(email){
+            if (!validator.isEmail(email)) this.errors.push('Email inválido!');
+        }
+        
 
         // const phoneRegExp = /^\+(?:[0-9] ?){6,14}[0-9]$/;
         // if (!phoneRegExp.test(phonenumber)) this.errors.push('Número de telemóvel inválido');

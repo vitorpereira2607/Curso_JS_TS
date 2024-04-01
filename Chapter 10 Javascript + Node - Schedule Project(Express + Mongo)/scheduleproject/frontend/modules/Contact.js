@@ -1,7 +1,7 @@
 import validator from "validator";
 import { createError } from "./FormValidation";
 
-export default class Login {
+export default class Contact {
     constructor(formClass) {
         this.form = document.querySelector(formClass);
         this.events();
@@ -13,9 +13,10 @@ export default class Login {
 
     events() {
         if (!this.form) return;
-        this.form.addEventListener('submit', e => {
+
+        this.form.addEventListener('submit', (e) => {
             e.preventDefault();
-            this.handleSubmit(e);
+            this.handleSubmit(e)
         })
     }
 
@@ -31,9 +32,8 @@ export default class Login {
     validate(e) {
         const el = e.target;
 
-        const userInput = el.querySelector('input[name="username"]');
+        const nameInput = el.querySelector('input[name="name"]');
         const emailInput = el.querySelector('input[name="email"]');
-        const passwordInput = el.querySelector('input[name="password"]');
         let error = false;
 
         const errorFields = this.form.querySelectorAll('.invalid-feedback');
@@ -48,23 +48,19 @@ export default class Login {
             invalidInput.classList.remove('is-invalid');
         }
 
-        if (userInput) {
-            if (userInput.value.length < 5 || userInput.value.length > 15) {
-                createError(userInput, 'Utilizador deve conter entre 5 e 15 caracteres.')
+        if (!nameInput.value) {
+            createError(nameInput, 'Nome é um campo obrigatório.');
+            error = true;
+        }
+
+        if (emailInput.value) {
+            if (!validator.isEmail(emailInput.value)){
+                createError(emailInput, 'Email Inválido');
                 error = true;
-            }
-        }
-
-        if (!validator.isEmail(emailInput.value)) {
-            createError(emailInput, 'Email inválido!');
-            error = true;
-        }
-
-        if (passwordInput.value.length < 3 || passwordInput.value.length > 50) {
-            createError(passwordInput, 'A password deve conter entre 3 a 50 caracteres.');
-            error = true;
+            }   
         }
 
         return !error;
     }
+
 }
