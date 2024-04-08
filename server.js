@@ -19,7 +19,7 @@ const MongoStore = require('connect-mongo');
 const flashMessage = require('connect-flash');
 const routes = require('./routes'); 
 const path = require('path'); 
-const { globalMiddleware, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
+const { globalMiddleware, checkCsrfError, csrfMiddleware, onlyHttp } = require('./src/middlewares/middleware');
 const helmet = require('helmet');
 const csrf = require('csurf');
 
@@ -53,6 +53,7 @@ app.use(csrf());
 app.use(globalMiddleware);
 app.use(checkCsrfError);
 app.use(csrfMiddleware);
+app.use(onlyHttp);
 app.use(routes);
 
 // Start the server and listen on port 3000

@@ -5,6 +5,15 @@ exports.globalMiddleware = (req, res, next) => {
     next();
 }
 
+exports.onlyHttp = (req, res, next) => {
+    if (!req.secure) {
+        next();
+    } else {
+        res.redirect('http://' + req.headers.host + req.url);
+    }
+    next();
+}
+
 exports.checkCsrfError = (err, req, res, next) => {
     if(err){
         return res.render('./error')
