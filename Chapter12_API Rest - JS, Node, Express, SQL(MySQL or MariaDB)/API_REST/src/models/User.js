@@ -1,33 +1,81 @@
-import { Sequelize, DataTypes, Model } from "sequelize";
-import sequelize from '../config/database';
+import Sequelize, { Model } from 'sequelize';
+import bcryptjs from 'bcryptjs';
+import sequelize from '../config/database'
 
-export default class User extends Model {}
+class User extends Model {
+  static async beforeSave(user) {
+    if (user.password) {
+      user.password_hash = await bcryptjs.hash(user.password, 8);
+    }
+  }
+}
 
 User.init(
   {
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     name: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
+      defaultValue: '',
+      validate: {
+        notEmpty: {
+          msg: 'Name field can not be empty.',
+        },
+      },
     },
     surname: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
+      defaultValue: '',
+      validate: {
+        notEmpty: {
+          msg: 'Surname field can not be empty.',
+        },
+      },
     },
     email: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
+      defaultValue: '',
+      validate: {
+        isEmail: {
+          msg: 'Invalid Email.',
+        },
+      },
+    },
+    password_hash: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      defaultValue: '',
+    },
+    password: {
+      type: Sequelize.VIRTUAL,
+      allowNull: false,
+      defaultValue: '',
+      validate: {
+        len: {
+          args: [5, 15],
+          msg: 'Field must contain between 5 and 15 characters.',
+        },
+      },
     },
     photo: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: true,
-    }
+      defaultValue: '',
+      validate: {
+        notEmpty: {
+          msg: 'Photo field can not be empty.',
+        },
+      },
+    },
   },
   {
     sequelize,
-    modelName: 'User'
+    modelName: 'User',
   }
 );
+
+// Hook for beforeSave
+User.addHook('beforeSave', User.beforeSave);
+
+export default User;

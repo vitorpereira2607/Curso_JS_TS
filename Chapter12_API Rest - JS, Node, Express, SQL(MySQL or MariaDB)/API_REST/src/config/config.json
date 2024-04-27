@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "username": "jiraclone",
+    "password": "483N32E5Dg.",
+    "database": "jiraclone",
+    "host": "35.228.168.30",
+    "dialect": "mariadb"
+  },
+  "test": {
+    "username": "jiraclone",
+    "password": "483N32E5Dg.",
+    "database": "jiraclone",
+    "host": "35.228.168.30",
+    "dialect": "mariadb"
+  },
+  "production": {
+    "username": "jiraclone",
+    "password": "483N32E5Dg.",
+    "database": "jiraclone",
+    "host": "35.228.168.30",
+    "dialect": "mariadb"
+  }
+}

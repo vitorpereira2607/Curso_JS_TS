@@ -21,7 +21,7 @@ class App {
   }
 
   routes() {
-    this.app.use('/', userRoute);
+    this.app.use('/users/', userRoute);
   }
 }
 
