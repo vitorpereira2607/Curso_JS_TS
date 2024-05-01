@@ -3,7 +3,7 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize('database', 'username', 'password', {
+const sequelize = new Sequelize({
   dialect: 'mariadb',
   host: process.env.DATABASE_HOST,
   port: process.env.DATABASE_PORT,
@@ -25,7 +25,7 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 
 module.exports = sequelize;
 
-// DESTA FORMA CONSIGA MIGRAR MAS NÃO CONSIGO INSERIR DADOS NA BASE DE DADOS
+// //DESTA FORMA CONSIGo MIGRAR MAS NÃO CONSIGO INSERIR DADOS NA BASE DE DADOS
 // module.exports = {
 //   dialect: 'mariadb',
 //   host: process.env.DATABASE_HOST,

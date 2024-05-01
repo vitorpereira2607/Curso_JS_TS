@@ -12,6 +12,16 @@ class User extends Model {
 
 User.init(
   {
+    username: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      defaultValue: '',
+      validate: {
+        notEmpty: {
+          msg: 'Username field can not be empty.',
+        },
+      },
+    },
     name: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -44,7 +54,6 @@ User.init(
     },
     password_hash: {
       type: Sequelize.STRING,
-      allowNull: false,
       defaultValue: '',
     },
     password: {
@@ -54,7 +63,7 @@ User.init(
       validate: {
         len: {
           args: [5, 15],
-          msg: 'Field must contain between 5 and 15 characters.',
+          msg: 'Password must contain between 5 and 15 characters.',
         },
       },
     },
