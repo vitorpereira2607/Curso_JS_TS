@@ -8,6 +8,10 @@ class User extends Model {
       user.password_hash = await bcryptjs.hash(user.password, 8);
     }
   }
+
+  passwordIsValid(password){
+    return bcryptjs.compare(password, this.password_hash);
+  }
 }
 
 User.init(
@@ -81,10 +85,12 @@ User.init(
   {
     sequelize,
     modelName: 'User',
-  }
+  },
+
 );
 
-// Hook for beforeSave
+
+
 User.addHook('beforeSave', User.beforeSave);
 
 export default User;
