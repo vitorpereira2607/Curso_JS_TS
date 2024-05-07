@@ -50,6 +50,9 @@ User.init(
       type: Sequelize.STRING,
       allowNull: false,
       defaultValue: '',
+      unique:{
+        msg:'Email already exist.',
+      },
       validate: {
         isEmail: {
           msg: 'Invalid Email.',
@@ -75,11 +78,6 @@ User.init(
       type: Sequelize.STRING,
       allowNull: true,
       defaultValue: '',
-      validate: {
-        notEmpty: {
-          msg: 'Photo field can not be empty.',
-        },
-      },
     },
   },
   {
