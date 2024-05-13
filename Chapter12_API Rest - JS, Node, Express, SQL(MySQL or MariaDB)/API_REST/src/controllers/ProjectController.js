@@ -1,18 +1,17 @@
 import Project from "../models/Project";
 
+class ProjectController {
 
-class Project {
+  // get all users
   async index(req, res) {
-    const project = await Project.findAll();
-
-    if(!project){
-      return res.status(401).json({
-        errors: ['Users not found'];
-      })
+    try {
+      const projects = await Project.findAll();
+      return res.json(projects);
+    } catch (e) {
+      return res.json(null);
     }
-
-    return res.json(project);
   }
+
 }
 
-export default new Project();
+export default new ProjectController();

@@ -5,32 +5,17 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('categories', [
       {
-      categoryName:'jmaria23',
-      name: 'Joao',
-      surname: 'Maria',
-      password_hash: await bcryptjs.hash('12345', 8),
-      email:'joaomaria@gmail.com',
-      photo:'jmaria.png',
+      categoryName:'Business',
       created_at: new Date(),
       updated_at: new Date(),
      },
      {
-      username:'biatacarlos30',
-      name: 'Carlos',
-      surname: 'Baeta',
-      password_hash: await bcryptjs.hash('12345', 8),
-      email:'carlosbiata@gmail.com',
-      photo:'',
+      categoryName:'Marketing',
       created_at: new Date(),
       updated_at: new Date(),
      },
      {
-      username:'lheoskeltu',
-      name: 'Lheo',
-      surname: 'Cecilhe',
-      password_hash: await bcryptjs.hash('12345', 8),
-      email:'lheoskeltu@gmail.com',
-      photo:'',
+      categoryName:'Software',
       created_at: new Date(),
       updated_at: new Date(),
      }

@@ -87,8 +87,6 @@ User.init(
 
 );
 
-
-
 User.addHook('beforeSave', User.beforeSave);
 
 export default User;

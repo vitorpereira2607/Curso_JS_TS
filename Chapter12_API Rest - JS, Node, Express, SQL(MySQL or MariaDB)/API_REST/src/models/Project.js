@@ -7,11 +7,12 @@ class Project extends Model{}
 
 Project.init({
   projectName: {
+    field: 'projectName',
     type: Sequelize.STRING,
     allowNull: false,
     unique: {
       msg: 'Project name already exist.',
-    }
+    },
     validate: {
       notEmpty: {
         msg: 'Project field can not be empty.',
@@ -28,7 +29,7 @@ Project.init({
     defaultValue: '',
     unique: {
       msg: 'Link already exist.',
-    }
+    },
   },
   description: {
     type: Sequelize.STRING,
@@ -44,10 +45,12 @@ Project.init({
     }
   },
   categoryId: {
+    field: 'categoryId',
     type: Sequelize.INTEGER,
     allowNull: false,
   },
   userId: {
+    field: 'userId',
     type: Sequelize.INTEGER,
     allowNull: false,
   },
@@ -58,7 +61,7 @@ Project.init({
 }
 )
 
-Project.belongsTo(Category, { foreignKey: 'categoryId'})
-Project.belongsTo(User, { foreignKey: 'userId' })
+// Project.belongsTo(Category, { foreignKey: 'categoryId'})
+// Project.belongsTo(User, { foreignKey: 'userId' })
 
 export default Project;

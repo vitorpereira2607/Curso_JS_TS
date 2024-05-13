@@ -4,10 +4,10 @@ import CategoryController from '../controllers/CategoryController';
 const router = new Router();
 
 router.get('/index', CategoryController.index);
-// router.get('/', loginRequired, CategoryController.show);
+router.get('/:id', CategoryController.show);
 
-// router.post('/', CategoryController.store);
-// router.put('/', loginRequired, CategoryController.update);
-// router.delete('/', loginRequired, CategoryController.delete);
+router.post('/', CategoryController.store);
+router.put('/:id', CategoryController.update);
+router.delete('/:id',  CategoryController.delete);
 
 export default router;

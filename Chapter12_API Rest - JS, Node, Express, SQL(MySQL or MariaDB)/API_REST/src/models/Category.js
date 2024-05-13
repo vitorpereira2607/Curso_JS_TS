@@ -5,11 +5,12 @@ class Category extends Model{}
 
 Category.init({
   categoryName: {
+    field: 'categoryName',
     type: Sequelize.STRING,
     allowNull: false,
     unique: {
       msg: 'Category name already exist.',
-    }
+    },
     validate: {
       notEmpty: {
         msg: 'Category field can not be empty.',
