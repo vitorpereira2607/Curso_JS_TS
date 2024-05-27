@@ -25,7 +25,7 @@ const sequelize = new Sequelize({
 
 module.exports = sequelize;
 
-// //DESTA FORMA CONSIGo MIGRAR MAS NÃO CONSIGO INSERIR DADOS NA BASE DE DADOS
+//DESTA FORMA CONSIGo MIGRAR MAS NÃO CONSIGO INSERIR DADOS NA BASE DE DADOS
 // module.exports = {
 //   dialect: 'mariadb',
 //   host: process.env.DATABASE_HOST,

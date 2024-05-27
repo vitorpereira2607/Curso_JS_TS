@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import ProjectController from '../controllers/ProjectController';
+import loginRequired from '../middleware/loginRequired'
 
 const router = new Router();
 
 router.get('/index', ProjectController.index);
-// router.get('/', loginRequired, ProjectController.show);
+router.get('/', loginRequired, ProjectController.show);
 
 // router.post('/', ProjectController.store);
 // router.put('/', loginRequired, ProjectController.update);

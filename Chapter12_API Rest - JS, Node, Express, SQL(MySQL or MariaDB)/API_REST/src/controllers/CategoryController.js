@@ -31,8 +31,8 @@ class CategoryController {
 
   async store(req, res) {
     try {
-      const category = await Category.create(req.body);
-      return res.json(category);
+      const newCategory = await Category.create(req.body);
+      return res.json(newCategory);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map(err => err.message),

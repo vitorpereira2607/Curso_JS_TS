@@ -31,6 +31,7 @@ export default async (req, res, next) => {
 
     req.id = id;
     req.email = email;
+
     return next();
   } catch (e) {
     return res.status(401).json({
