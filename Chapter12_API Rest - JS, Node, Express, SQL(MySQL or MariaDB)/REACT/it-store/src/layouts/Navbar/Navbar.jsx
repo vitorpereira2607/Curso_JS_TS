@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import logo from '../../assets/logo.png';
 import cart_icon from '../../assets/cart_icon.png';
+import login_logo from '../../assets/login_logo.png'
 import { NavbarContainer, NavLogo, NavMenu, NavLoginCart, NavCartCount, StyledLink } from './styled';
 
-function Navbar() {
+export default function Navbar() {
     const [menu, setMenu] = useState('home');
 
     return (
@@ -24,12 +25,10 @@ function Navbar() {
                 </li>
             </NavMenu>
             <NavLoginCart>
-                <StyledLink to="/login"><button>Login</button></StyledLink>
+                <StyledLink to="/login"><img src={login_logo} alt="" /></StyledLink>
                 <StyledLink to="/cart"><img src={cart_icon} alt="Cart Icon" /></StyledLink>
                 <NavCartCount>0</NavCartCount>
             </NavLoginCart>
         </NavbarContainer>
     );
 }
-
-export default Navbar;

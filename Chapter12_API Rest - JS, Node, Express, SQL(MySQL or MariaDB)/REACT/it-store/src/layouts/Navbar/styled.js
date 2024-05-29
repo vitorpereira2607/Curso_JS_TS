@@ -6,9 +6,20 @@ export const StyledLink = styled(Link)`
     color: #FFFF;
 `
 
+export const HamburgerIcon = styled.img`
+    display: none; /* Initially hide the hamburger icon */
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+        display: block; /* Show the hamburger icon on smaller screens */
+    }
+`;
+
 export const NavbarContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 16px;
   box-shadow: 0 1px 3px -2px black;
   position: relative;
@@ -83,12 +94,14 @@ export const NavCartCount = styled.div`
     align-items: center;
     position: absolute;
     top: 25px;
-    right: -55px;
+    right: -20px;
     border-radius: 11px;
     transform: translate(50%, -50%);
     font-size: 14px;
     background: red;
     color: white
 `
+
+
 
 
