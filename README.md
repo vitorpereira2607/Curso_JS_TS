@@ -18,7 +18,8 @@ The files are organized by chapters from the course I'm following. Each chapter 
 - [x] Completed: Chapter 9: Node, Npm, Express, MongoDB
 - [x] Completed: Chapter 10: Javascript + Node - Schedule Project(Express + Mongo)
 - [x] Completed: Chapter 11: Linux - Application Deployment and Security + SSH Keys
-- [ ] In Progress: Chapter 12: API REST - JavaScript, Node, Express and SQL(MySQL or MariaDB) 
+- [x] Completed: Chapter 12: API REST - JavaScript, Node, Express and SQL(MySQL or MariaDB)
+- [x] Completed: Chapter 13: React - Redux - Redux Saga - React Hooks e Functional Components - Advanced
 
 ## Future Expectations
 I plan to apply what I've learned in this course both in personal projects and in the job market. Apart from solidifying my knowledge in JavaScript, I'm interested in exploring the following frameworks:
